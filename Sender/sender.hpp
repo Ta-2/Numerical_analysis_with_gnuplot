@@ -6,7 +6,7 @@
 
 class Sender{
 public:
-  explicit Sender (const std::shared_ptr<double>&);
+  explicit Sender (const std::shared_ptr<double>&, int);
   ~Sender ();
   void Set_Target_ptr (const std::shared_ptr<double>&);
   bool SuccessGnuplot();
@@ -18,6 +18,7 @@ private:
   FILE *gnuplot;
   int StartX, EndX;
   int StartY, EndY;
+  int Size;
   std::shared_ptr<double> target_ptr;
 };
 

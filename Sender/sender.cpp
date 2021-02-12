@@ -4,13 +4,14 @@
 #include <memory>
 #include <iostream>
 
-Sender::Sender (const std::shared_ptr<double>& set_ptr){
+Sender::Sender (const std::shared_ptr<double>& set_ptr, int size){
   Set_Target_ptr(set_ptr);
-  StartX = 0; EndX = 1; StartY = 0; EndY = 0;
+  StartX = 0; EndX = 1; StartY = 0; EndY = 0, Size = size;
   if(!StartGnuplot()){
     std::cout << "failed to start gnuplot." << std::endl;
   }
 }
+
 Sender::~Sender (){
   if (!gnuplot){
   fflush(gnuplot);
@@ -34,6 +35,11 @@ bool Sender::StartGnuplot (){
   else return true;
 }
 void Sender::SendData (){
-  fprintf(gnuplot, "plot sin(x)\n");
+  double *datas = target_ptr.get();
+  fprintf(gnuplot, "plot '-' with lines\n");
+  for(int i = 0; i < Size; i++){
+    fprintf(gnuplot, "%lf, %lf\n", (double)i*(EndX - StartX)/Size, *(datas+i));
+  }
+  fprintf(gnuplot, "e\n");
   fflush(gnuplot);
 }
