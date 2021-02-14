@@ -2,9 +2,8 @@
 #include <memory>
 #include <iostream>
 #include <conio.h>
-#include <string>
+#include <string.h>
 #include <math.h>
-#include <windows.h>
 #define arr_size 20
 #define PI 3.14159265359f
 

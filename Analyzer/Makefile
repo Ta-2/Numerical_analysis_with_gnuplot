@@ -9,6 +9,7 @@ Analyzer.o: Analyzer.cpp
 
 clean:
 	rm *.exe main *.gch *.o *.out
+	
 all:
 	touch main.cpp Analyzer.cpp Analyzer.hpp
 	main
